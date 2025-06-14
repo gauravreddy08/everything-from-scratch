@@ -1,20 +1,15 @@
 # Backpropagation Derivation in a Neural Network
 
-We derive the gradient of the loss with respect to the weights $W$ in a fully connected neural network layer.
 
-## Part 1: Backpropagation for the Final Layer (Layer L)
+## Part 1: Backpropagation for the Final Layer (L)
 
 ### Goal
-
-We want to compute the gradient of the loss with respect to the weights of the **final layer**:
 
 $$
 \frac{\partial \mathcal{L}}{\partial W^L}
 $$
 
 ### Step 1: Apply Chain Rule
-
-Using the chain rule, we break down the gradient into three terms:
 
 $$
 \frac{\partial \mathcal{L}}{\partial W^L} = \frac{\partial \mathcal{L}}{\partial a^L} \cdot \frac{\partial a^L}{\partial z^L} \cdot \frac{\partial z^L}{\partial W^L}
@@ -29,8 +24,6 @@ For the final layer with sigmoid activation and binary cross-entropy loss:
 $$
 \frac{\partial \mathcal{L}}{\partial a^L} \cdot \frac{\partial a^L}{\partial z^L} = \hat{y} - y
 $$
-
-This is the **error signal** that flows back from the loss function.
 
 #### Term 3: Linear Combination Derivative
 
@@ -48,11 +41,9 @@ $$
 \frac{\partial \mathcal{L}}{\partial W^L} = (\hat{y} - y) \cdot (a^{L-1})^T
 $$
 
----
 
 ## Part 2: Backpropagation for Hidden Layers (L-1 → 0)
 
-Now we compute gradients for the **hidden layers** using the same chain rule approach:
 
 $$
 \frac{\partial \mathcal{L}}{\partial W^{L-1}} = \frac{\partial \mathcal{L}}{\partial a^{L-1}} \cdot \frac{\partial a^{L-1}}{\partial z^{L-1}} \cdot \frac{\partial z^{L-1}}{\partial W^{L-1}}
@@ -66,7 +57,6 @@ $$
 \frac{\partial \mathcal{L}}{\partial a^{L-1}} = \frac{\partial \mathcal{L}}{\partial z^L} \cdot \frac{\partial z^L}{\partial a^{L-1}} = (\hat{y} - y) \cdot W^L
 $$
 
-This propagates the error signal backward through the weights.
 
 #### II. Second Term: Activation Derivative
 

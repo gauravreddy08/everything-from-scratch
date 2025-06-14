@@ -1,22 +1,6 @@
-Backpropagation Derivation in a Neural Network
+# Backpropagation Derivation in a Neural Network
 
 We derive the gradient of the loss with respect to the weights $W$ in a fully connected neural network layer.
-
-## 🧾 Notation
-
-Let:
-
-* $z^L = W^L a^{L-1} + b^L$: linear combination at the final layer
-* $a^L = \sigma(z^L)$: activation function at final layer (assume softmax or sigmoid)
-* $\hat{y} = a^L$: network output
-* $y$: ground truth
-* $\mathcal{L} = \mathcal{L}(\hat{y}, y)$: loss function, e.g., cross-entropy
-* $W^L$: weights of the final layer
-* $a^{L-1}$: activations from the previous layer
-* $z^{L-1}$: linear combination from previous layer
-* $\sigma'$: derivative of activation function
-
----
 
 ## Part 1: Backpropagation for the Final Layer (Layer L)
 
@@ -25,7 +9,7 @@ Let:
 We want to compute the gradient of the loss with respect to the weights of the **final layer**:
 
 $$
-\boxed{\frac{\partial \mathcal{L}}{\partial W^L}}
+\frac{\partial \mathcal{L}}{\partial W^L}
 $$
 
 ### Step 1: Apply Chain Rule
@@ -61,7 +45,7 @@ $$
 ### Final Result for Layer L
 
 $$
-\boxed{\frac{\partial \mathcal{L}}{\partial W^L} = (\hat{y} - y) \cdot (a^{L-1})^T}
+\frac{\partial \mathcal{L}}{\partial W^L} = (\hat{y} - y) \cdot (a^{L-1})^T
 $$
 
 ---
@@ -108,5 +92,5 @@ $$
 ### Final Result for Hidden Layers
 
 $$
-\boxed{\frac{\partial \mathcal{L}}{\partial W^{L-1}} = \underbrace{\left( W^L \right)^T (\hat{y} - y)}_{\text{Error propagation}} \odot \underbrace{\text{ReLU}'(z^{L-1})}_{\text{Activation derivative}} \cdot \underbrace{(a^{L-2})^T}_{\text{Input from previous layer}}}
+\frac{\partial \mathcal{L}}{\partial W^{L-1}} = \underbrace{\left( W^L \right)^T (\hat{y} - y)}_{\text{Error propagation}} \odot \underbrace{\text{ReLU}'(z^{L-1})}_{\text{Activation derivative}} \cdot \underbrace{(a^{L-2})^T}_{\text{Input from previous layer}}
 $$

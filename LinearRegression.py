@@ -1,5 +1,5 @@
 import numpy as np
-import loss
+from utils import mean_squared_error
 
 class LinearRegression:
     def __init__(self, n_features):
@@ -9,7 +9,7 @@ class LinearRegression:
     def __call__(self, X):
         return (X @ self.weights) + self.bias
     
-    def fit(self, X, y, loss_fn = loss.mean_squared_error, steps=10000, lr=1e-4, log_interval=1000):
+    def fit(self, X, y, loss_fn = mean_squared_error, steps=10000, lr=1e-4, log_interval=1000):
 
         for step in range(steps):
             y_pred = self.__call__(X)

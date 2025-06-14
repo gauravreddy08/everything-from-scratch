@@ -1,6 +1,5 @@
 import numpy as np
-from loss import crossentropy
-from utils import onehot_encoding
+from utils import crossentropy, onehot_encoding
 from sklearn.datasets import make_classification
 
 class MultinomialLogisticRegression:

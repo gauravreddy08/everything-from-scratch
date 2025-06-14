@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.datasets import make_classification
-from activations import ReLU, Sigmoid
-from loss import binary_crossentropy, accuracy
+from utils.activations import ReLU, Sigmoid
+from utils.loss_functions import binary_crossentropy, accuracy
 
 # This is a Binary Classification Network, with BCE Loss
 

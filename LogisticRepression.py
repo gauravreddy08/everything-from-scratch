@@ -1,5 +1,5 @@
 import numpy as np
-from loss import binary_crossentropy, accuracy
+from utils import binary_crossentropy, accuracy
 from sklearn.datasets import make_classification
 
 class LogisticRegression:

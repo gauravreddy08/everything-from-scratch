@@ -17,7 +17,7 @@ $$
 Using the chain rule, we break down the gradient into three terms:
 
 $$
-\frac{\partial \mathcal{L}}{\partial W^L} = \underbrace{\frac{\partial \mathcal{L}}{\partial a^L} \cdot \frac{\partial a^L}{\partial z^L}}_{\text{Term 1 and 2: Loss + Activation}} \cdot \underbrace{\frac{\partial z^L}{\partial W^L}}_{\text{Term 3: Linear}}
+\frac{\partial \mathcal{L}}{\partial W^L} = \frac{\partial \mathcal{L}}{\partial a^L} \cdot \frac{\partial a^L}{\partial z^L} \cdot \frac{\partial z^L}{\partial W^L}
 $$
 
 ### Step 2: Compute Each Term
@@ -55,7 +55,7 @@ $$
 Now we compute gradients for the **hidden layers** using the same chain rule approach:
 
 $$
-\frac{\partial \mathcal{L}}{\partial W^{L-1}} = \underbrace{\frac{\partial \mathcal{L}}{\partial a^{L-1}}}_{\text{First}} \cdot \underbrace{\frac{\partial a^{L-1}}{\partial z^{L-1}}}_{\text{Second}} \cdot \underbrace{\frac{\partial z^{L-1}}{\partial W^{L-1}}}_{\text{Third}}
+\frac{\partial \mathcal{L}}{\partial W^{L-1}} = \frac{\partial \mathcal{L}}{\partial a^{L-1}} \cdot \frac{\partial a^{L-1}}{\partial z^{L-1}} \cdot \frac{\partial z^{L-1}}{\partial W^{L-1}}
 $$
 
 ### Breaking Down Each Term
@@ -63,7 +63,7 @@ $$
 #### I. First Term: Error Propagation
 
 $$
-\frac{\partial \mathcal{L}}{\partial a^{L-1}} = \underbrace{\frac{\partial \mathcal{L}}{\partial z^L}}_{\hat{y} - y} \cdot \frac{\partial z^L}{\partial a^{L-1}} = \underbrace{(\hat{y} - y)}_{\text{Error from above}} \cdot W^L
+\frac{\partial \mathcal{L}}{\partial a^{L-1}} = \frac{\partial \mathcal{L}}{\partial z^L} \cdot \frac{\partial z^L}{\partial a^{L-1}} = (\hat{y} - y) \cdot W^L
 $$
 
 This propagates the error signal backward through the weights.
@@ -92,5 +92,5 @@ $$
 ### Final Result for Hidden Layers
 
 $$
-\frac{\partial \mathcal{L}}{\partial W^{L-1}} = \underbrace{\left( W^L \right)^T (\hat{y} - y)}_{\text{Error propagation}} \odot \underbrace{\text{ReLU}'(z^{L-1})}_{\text{Activation derivative}} \cdot \underbrace{(a^{L-2})^T}_{\text{Input from previous layer}}
+\frac{\partial \mathcal{L}}{\partial W^{L-1}} = \left( W^L \right)^T (\hat{y} - y) \odot \text{ReLU}'(z^{L-1}) \cdot (a^{L-2})^T
 $$

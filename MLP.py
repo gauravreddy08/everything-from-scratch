@@ -1,7 +1,6 @@
 import numpy as np
 from sklearn.datasets import make_classification
-from utils.activations import ReLU, Sigmoid
-from utils.loss_functions import binary_crossentropy, accuracy
+from utils import ReLU, Sigmoid, binary_crossentropy, accuracy
 
 # This is a Binary Classification Network, with BCE Loss
 
@@ -63,7 +62,8 @@ class MLP:
                 loss = binary_crossentropy(y, y_pred)
                 acc = accuracy(np.squeeze(y), np.squeeze(y_pred))
                 print(f"Epoch {epoch}/{epochs} | Loss: {loss} Acc: {acc}")
-    
+
+
 # Training Simulation
 X, y = make_classification()
 y = np.expand_dims(y, axis=1)
@@ -71,5 +71,3 @@ layers = [20, 16, 8, 1]
 
 model = MLP(layers)
 model.train(X, y, epochs=10000, lr=0.0003)
-
-        

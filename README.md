@@ -3,9 +3,10 @@
 | Implementation | Code | Extra Notes |
 |----------------|-----------|-------------|
 | Linear Regression | [LinearRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LinearRegression.py) | |
-| Log Regression (Binary Classification) | [LogisticRepression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LogisticRepression.py) | |
+| Logistic Regression (Binary Classification) | [LogisticRepression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LogisticRepression.py) | |
 | Multinomial Log Regression (Multiclass Classification) | [MultinomialLogisticRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MultinomialLogisticRegression.py) | |
-| MLP (NN from Scratch) | [MLP.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MLP.py) | [MLP.md](https://github.com/gauravreddy08/everything-from-scratch/blob/main/notes/MLP.md) |
+| LSTM | [LSTM.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LSTM/LSTM.py) | [Notes](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LSTM/README.md)|
+| MLP (NN from Scratch) | [MLP.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MLP.py) | [MLP.md](https://github.com/gauravreddy08/everything-from-scratch/blob/main/assets/MLP.md) |
 | Activation Function | [activations.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/utils/activations.py) | |
 | Loss Functions | [loss_functions.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/utils/loss_functions.py) | |
 | K-Nearest Neighbors (KNN) | [KNN.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/KNN.ipynb) | |

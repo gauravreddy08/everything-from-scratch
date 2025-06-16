@@ -3,7 +3,7 @@
 | Implementation | Code | Extra Notes |
 |----------------|-----------|-------------|
 | Linear Regression | [LinearRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LinearRegression.py) | |
-| Logistic Regression (Binary Classification) | [LogisticRepression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LogisticRepression.py) | |
+| Logistic Regression (Binary Classification) | [LogisticRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LogisticRegression.py) | |
 | Multinomial Log Regression (Multiclass Classification) | [MultinomialLogisticRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MultinomialLogisticRegression.py) | |
 | LSTM | [LSTM.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LSTM/LSTM.py) | [Notes](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LSTM/README.md)|
 | MLP (NN from Scratch) | [MLP.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MLP.py) | [MLP.md](https://github.com/gauravreddy08/everything-from-scratch/blob/main/assets/MLP.md) |

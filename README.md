@@ -41,12 +41,12 @@
 | Llama 3 Implementation | [main.py](llama3/main.py) |  |
 | Llama 3.1 Implementation | [main.py](llama3.1/main.py) | |
 
-### Utilities
+<!-- ### Utilities
 | Implementation | Code | Extra Notes |
 |----------------|-----------|-------------|
 | Activation Functions | [activations.py](utils/activations.py) | |
 | Loss Functions | [loss_functions.py](utils/loss_functions.py) | |
-| General Utilities | [utils.py](utils/utils.py) | |
+| General Utilities | [utils.py](utils/utils.py) | | -->
 
 > More implementations coming soon... 
 > - [ ] Qwen

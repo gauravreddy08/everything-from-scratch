@@ -1,74 +1,9 @@
 from torch import nn
 import torch
-import tiktoken
-from torch.utils.data import Dataset
-from torch.utils.data import DataLoader
-import wandb
-
-wandb.login()
-
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-
-config = {
-    "vocab_size": 50257,
-    "context_length": 256,
-    "emb_dim": 384,
-    "n_heads": 6,
-    "n_layers": 6,
-    "drop_rate": 0.25,
-    "qkv_bias": False,
-    "batch_size": 128,
-    "device": device,
-    'lr': 1e-5,
-    'epochs': 10
-  }
-
-run = wandb.init(
-    project="gpt2-chat",
-    config = config
-)
-
-tokenizer = tiktoken.get_encoding('gpt2')
-
-def text_to_tokens(text, tokenizer):
-  encoded = tokenizer.encode(text)
-  encoded_tensor = torch.tensor(encoded)
-  return encoded_tensor
-
-def tokens_to_text(tokens, tokenizer):
-  flat = tokens.squeeze(0)
-  return tokenizer.decode(flat.tolist())
-
-with open('chat.txt', 'r') as file:
-  raw_data = file.read()
-
-all_tokens = text_to_tokens(raw_data, tokenizer)
-
-train_tokens = all_tokens[:int(0.9*len(all_tokens))]
-test_tokens = all_tokens[int(0.9*len(all_tokens)):]
-
-class CustomDataset(Dataset):
-  def __init__(self, data, config):
-    self.data = data
-    self.context_length = config['context_length']
-  def __getitem__(self, index):
-    return self.data[index:index+self.context_length], self.data[index+1:index+self.context_length+1]
-  def __len__(self):
-    return len(self.data)-self.context_length
-
-train_data = CustomDataset(train_tokens, config)
-test_data = CustomDataset(test_tokens, config)
-
-train_dataloader = DataLoader(train_data,
-                              batch_size=config['batch_size'],
-                              shuffle=True)
-
-test_dataloader = DataLoader(test_data,
-                             batch_size=config['batch_size'],
-                             shuffle=False)
+from config import gpt2_base, gpt2_small
 
 class LayerNorm(nn.Module):
-  def __init__(self, config):
+  def __init__(self, config = gpt2_base):
     super().__init__()
 
     self.scale = nn.Parameter(torch.ones(config['emb_dim']))
@@ -82,7 +17,7 @@ class LayerNorm(nn.Module):
     return (x_normalized + self.shift)*self.scale
 
 class MultiHeadAttention(nn.Module):
-  def __init__(self, config):
+  def __init__(self, config = gpt2_base):
     super().__init__()
     self.K = nn.Linear(config['emb_dim'], config['emb_dim'], bias=config['qkv_bias'])
     self.Q = nn.Linear(config['emb_dim'], config['emb_dim'], bias=config['qkv_bias'])
@@ -130,7 +65,7 @@ class GeLU(nn.Module):
           ))
 
 class MLP(nn.Module):
-  def __init__(self, config):
+  def __init__(self, config = gpt2_base):
     super().__init__()
 
     self.emb_dim = config['emb_dim']
@@ -145,7 +80,7 @@ class MLP(nn.Module):
     return self.layers(x)
 
 class TransformerBlock(nn.Module):
-  def __init__(self, config):
+  def __init__(self, config = gpt2_base):
     super().__init__()
 
     self.attention = MultiHeadAttention(config)
@@ -172,8 +107,8 @@ class TransformerBlock(nn.Module):
 
     return ff_out
 
-class GPTModel(nn.Module):
-  def __init__(self, config):
+class GPT2(nn.Module):
+  def __init__(self, config = gpt2_base):
     super().__init__()
 
     self.token_emb = nn.Embedding(config['vocab_size'], config['emb_dim'])
@@ -199,59 +134,8 @@ class GPTModel(nn.Module):
     x = self.final_norm(x)
     logits = self.out_head(x)
     return logits
-
-# model = GPTModel(config)
-
-# def generate(model, idx, max_new_tokens, context_size):
-#   for _ in range(max_new_tokens):
-#     idx = idx[-context_size:]
-#     with torch.no_grad():
-#         logits = model(idx.to(device))
-#     probs = torch.nn.functional.softmax(logits[:, -1, :], dim=-1)
-#     idx_next = torch.argmax(probs, dim=-1, keepdim=True)
-#     idx = torch.cat([idx, idx_next], dim=1)
-#   return idx
-
-# out = generate(model=model,
-#                idx=text_to_tokens('Hello world!', tokenizer).unsqueeze(0),
-#                max_new_tokens=10,
-#                context_size=config['context_length'])
-
-# tokens_to_text(out, tokenizer)
-
-from torch.nn.functional import cross_entropy
-
-def get_loss(logits, targets):
-  logits_flat = logits.flatten(0, 1)
-  targets_flat = targets.flatten()
-
-  loss = cross_entropy(logits_flat, targets_flat)
-  return loss
-
-EPOCHS = config['epochs']
-model = GPTModel(config).to(device)
-optimizer = torch.optim.AdamW(model.parameters(), lr=config['lr'])
+  
+model = GPT2(gpt2_base)
 
 total_params = sum(p.numel() for p in model.parameters())
 print(f"Total number of parameters: {total_params:,}")
-
-for epoch in range(EPOCHS):
-  model.train()
-  for X, y in train_dataloader:
-    X, y = X.to(config['device']), y.to(config['device'])
-    logits = model(X)
-    loss = get_loss(logits, y)
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
-
-  for X, y in test_dataloader:
-    loss = 0
-    model.eval()
-    with torch.no_grad():
-      X, y = X.to(config['device']), y.to(config['device'])
-      logits = model(X)
-      loss += get_loss(logits, y)
-  print(f'EPOCH {epoch}/{EPOCHS} | test_val: {loss/len(test_dataloader)}')
-  wandb.log({"epoch": epoch+1, "loss": loss/len(test_dataloader)})
-  torch.save(model.state_dict(), f'chat-model{epoch}.pt')

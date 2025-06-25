@@ -1,20 +1,55 @@
-# Index
+![BANNER](assets/banner.png )
 
+## Index
+
+### Machine Learning Models
 | Implementation | Code | Extra Notes |
 |----------------|-----------|-------------|
-| Linear Regression | [LinearRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LinearRegression.py) | |
-| Logistic Regression (Binary Classification) | [LogisticRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LogisticRegression.py) | |
-| Multinomial Log Regression (Multiclass Classification) | [MultinomialLogisticRegression.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MultinomialLogisticRegression.py) | |
-| LSTM | [LSTM.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LSTM/LSTM.py) | [Notes](https://github.com/gauravreddy08/everything-from-scratch/blob/main/LSTM/README.md)|
-| MLP (NN from Scratch) | [MLP.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/MLP.py) | [MLP.md](https://github.com/gauravreddy08/everything-from-scratch/blob/main/assets/MLP.md) |
-| Activation Function | [activations.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/utils/activations.py) | |
-| Loss Functions | [loss_functions.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/utils/loss_functions.py) | |
-| K-Nearest Neighbors (KNN) | [KNN.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/KNN.ipynb) | |
-| K-Means Clustering | [KMeans.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/KMeans.ipynb) | |
-| Attention Mechanisms | [Attentions.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/Attentions.ipynb) | |
-| Batch & Layer Normalization | [Bacth&LayerNorm.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/Bacth&LayerNorm.ipynb) | |
-| Tokenizer | [Tokenizer.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/Tokenizer.ipynb) | |
-| GPT-2 Implementation | [GPT2.ipynb](https://github.com/gauravreddy08/everything-from-scratch/blob/main/GPT2.ipynb) | |
-| GPT-2 Pre-training | [gpt2-pretraining.py](https://github.com/gauravreddy08/everything-from-scratch/blob/main/gpt2-pretraining.py) | |
+| Linear Regression | [LinearRegression.py](ml-models/LinearRegression.py) | |
+| Logistic Regression (Binary Classification) | [LogisticRegression.py](ml-models/LogisticRegression.py) | |
+| Multinomial Log Regression (Multiclass Classification) | [MultinomialLogisticRegression.py](ml-models/MultinomialLogisticRegression.py) | |
+| K-Nearest Neighbors (KNN) | [KNN.ipynb](ml-models/KNN.ipynb) | |
+| K-Means Clustering | [KMeans.ipynb](ml-models/KMeans.ipynb) | |
 
->More coming soon... 
+### Neural Networks
+| Implementation | Code | Extra Notes |
+|----------------|-----------|-------------|
+| MLP (Neural Network from Scratch) | [MLP.py](ml-models/MLP.py) | [backprop](assets/MLP.md) |
+| LSTM | [LSTM.py](LSTM/LSTM.py) | [Notes](LSTM/README.md) |
+
+### Attention Mechanisms
+| Implementation | Code | Extra Notes |
+|----------------|-----------|-------------|
+| Self Attention | [SelfAttention.py](Attention/SelfAttention.py) | |
+| Multi-Head Attention | [MultiHeadAttention.py](Attention/MultiHeadAttention.py) | |
+| Naive Multi-Head Attention | [NaiveMultiHeadAttention.py](Attention/NaiveMultiHeadAttention.py) | |
+| Multi-Query Attention | [MultiQueryAttention.py](Attention/MultiQueryAttention.py) | |
+| Grouped-Query Attention | [GroupedQueryAttention.py](Attention/GroupedQueryAttention.py) | |
+
+### Normalization Techniques
+| Implementation | Code | Extra Notes |
+|----------------|-----------|-------------|
+| Batch Normalization | [BatchNorm.py](Normalization/BatchNorm.py) | |
+| Layer Normalization | [LayerNorm.py](Normalization/LayerNorm.py) | |
+| RMS Normalization | [RMSNorm.py](Normalization/RMSNorm.py) | |
+
+### Language Models
+| Implementation | Code | Extra Notes |
+|----------------|-----------|-------------|
+| GPT-2 Implementation | [main.py](GPT2/main.py) |  |
+| Llama 2 Implementation | [main.py](llama2/main.py) |  |
+| Llama 3 Implementation | [main.py](llama3/main.py) |  |
+| Llama 3.1 Implementation | [main.py](llama3.1/main.py) | |
+
+### Utilities
+| Implementation | Code | Extra Notes |
+|----------------|-----------|-------------|
+| Activation Functions | [activations.py](utils/activations.py) | |
+| Loss Functions | [loss_functions.py](utils/loss_functions.py) | |
+| General Utilities | [utils.py](utils/utils.py) | |
+
+> More implementations coming soon... 
+> - [ ] Qwen
+> - [ ] KV Cache
+> - [ ] Knowledge Distillation
+    
